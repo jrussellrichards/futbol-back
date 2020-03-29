@@ -8,6 +8,8 @@ module.exports = function (app) {
   // .delete(tournamentController.deleteTournament);
   app.route('/tournament/')
     .get(tournamentController.getTournaments)
+  app.route('/tournaments/sport/:sport')
+    .get(tournamentController.getTournamentBySport)
 
   app.route('/')
     .get(tournamentController.getTournaments)

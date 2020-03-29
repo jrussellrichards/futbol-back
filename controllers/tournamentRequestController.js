@@ -20,6 +20,19 @@ exports.getTournament = function (req, res) {
 };
 
 
+exports.getTournamentBySport = function (req, res) {
+
+  Tournament.findAll({
+    where: {
+      sport: req.params.sport
+    }
+  }).then(tournament => {
+    res.send(tournament)
+  });
+
+};
+
+
 exports.getTournaments = function (req, res) {
   Tournament.findAll().then(tournament => {
     res.send(tournament);
