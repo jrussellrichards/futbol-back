@@ -6,7 +6,8 @@ const Tournament = sequelize.define('tournament', {
     id: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        primaryKey: true
+        primaryKey: true,
+        autoIncrement: true
 
     },
     title: {

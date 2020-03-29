@@ -14,4 +14,12 @@ module.exports = function (app) {
   app.route('/')
     .get(tournamentController.getTournaments)
 
+  app.route('/createTournament/')
+    .post(tournamentController.createTournament)
+
 };
+
+
+
+
+// :param es el parametro que se recibe por la peticion indicada, este parametro es leido en el controlador
