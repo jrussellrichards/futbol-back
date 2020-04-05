@@ -16,8 +16,8 @@ exports.checkToken = (req,res,next) => {
         error : 'invalid token'
       });
     };
-    console.log(payload)
-    req.userId = payload.email;
+    // console.log(payload)
+    req.userId = payload.userId;
   
     next();
   

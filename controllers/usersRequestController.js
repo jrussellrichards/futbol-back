@@ -16,24 +16,29 @@ exports.getUsers = function (req, res) {
 };
 
 const getUserById = function (pId) {
-
+  
   Users.findAll({
     where: {
       id: pId
     }
   }).then(user => {
-    return user[0]
+    return user[0].dataValues.id
   });
 
 };
 exports.MainUser = function (req, res) {
-  user=getUserById(req.userId)
-  res.send(req.user)
-
+  Users.findAll({
+    where: {
+      id: req.userId
+    }
+  }).then(user => {
+    res.send(user)
+  });
 };
+
 const createToken = (user) => {
   let payload = {
-    userId: user.id,
+    userId: user.dataValues.id,
     createAt: moment().unix(),
     expiresAt: moment().add(1,'day').unix()
   }
