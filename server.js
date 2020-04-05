@@ -1,4 +1,8 @@
 const express = require('express');
+require('dotenv').config();
+const bcrypt = require('bcrypt')
+const jwt = require('jwt-simple')
+const moment = require('moment')
 const app = express();
 var mysql = require('mysql');
 const port = process.env.PORT || 5000;
