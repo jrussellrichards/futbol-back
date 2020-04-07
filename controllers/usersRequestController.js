@@ -15,17 +15,7 @@ exports.getUsers = function (req, res) {
 
 };
 
-const getUserById = function (pId) {
-  
-  Users.findAll({
-    where: {
-      id: pId
-    }
-  }).then(user => {
-    return user[0].dataValues.id
-  });
 
-};
 exports.MainUser = function (req, res) {
   Users.findAll({
     where: {
@@ -54,19 +44,26 @@ exports.login = function (req, res) {
     }
     
     }).then(user => {
-      pass = user[0].password
-      const equals = bcrypt.compareSync(req.body.password,pass)
-      if(!equals){
-      res.json({
+      if(user[0] === undefined){
+        res.json({
           error: 'Error, email or password incorrect'
       })
       }
-      else{
-          res.json({
-              succesfull: createToken(user[0]),
-              done: 'login correct'
-          })
-      }
+      else {
+
+        pass = user[0].password
+        const equals = bcrypt.compareSync(req.body.password,pass)
+        if(!equals){
+        res.json({
+            error: 'Error, email or password incorrect'
+        })
+        }
+        else{
+            res.json({
+                succesfull: createToken(user[0]),
+                done: 'login correct'
+            })
+        }}
     });
   
   };

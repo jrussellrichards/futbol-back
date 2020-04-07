@@ -3,7 +3,7 @@ var usersController = require("../controllers/usersRequestController");
 var middleware = require("./middleware/auth.js");
 
 module.exports = function (app) {
-  app.route("/login/").post(usersController.login);
+  app.route("/login").post(usersController.login);
   app.use(middleware.checkToken)
   app.route("/users").get(usersController.getUsers);
   app
