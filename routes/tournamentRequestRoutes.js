@@ -3,6 +3,7 @@ var usersController = require("../controllers/usersRequestController");
 var middleware = require("./middleware/auth.js");
 
 module.exports = function (app) {
+  app.route("/CreateUser").post(usersController.createUser);
   app.route("/login").post(usersController.login);
   app.use(middleware.checkToken)
   app.route("/users").get(usersController.getUsers);
@@ -20,7 +21,6 @@ module.exports = function (app) {
   
   app.route("/createTournament/").post(tournamentController.createTournament);
   
-  app.route("/CreateUser").post(usersController.createUser);
 
   app.route("/mainUser").get(usersController.MainUser);
 

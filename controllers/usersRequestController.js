@@ -45,23 +45,27 @@ exports.login = function (req, res) {
     
     }).then(user => {
       if(user[0] === undefined){
+        res.status(401)
         res.json({
-          error: 'Error, email or password incorrect'
+          error: 'Error, email not found'
       })
       }
       else {
-
         pass = user[0].password
+        name = user[0].name
         const equals = bcrypt.compareSync(req.body.password,pass)
         if(!equals){
+        res.status(401)
         res.json({
             error: 'Error, email or password incorrect'
         })
         }
         else{
             res.json({
-                succesfull: createToken(user[0]),
-                done: 'login correct'
+                token: createToken(user[0]),
+                oka: true,
+                name
+                
             })
         }}
     });
@@ -86,3 +90,14 @@ exports.createUser = async (req, res) => {
     }
   }
 
+function ok(body) {
+    resolve({ ok: true, text: () => Promise.resolve(JSON.stringify(body)) })
+}
+
+function unauthorised() {
+    resolve({ status: 401, text: () => Promise.resolve(JSON.stringify({ message: 'Unauthorised' })) })
+}
+
+function error(message) {
+    resolve({ status: 400, text: () => Promise.resolve(JSON.stringify({ message })) })
+}
