@@ -5,9 +5,9 @@ const Users = sequelize.define('users', {
     // attributes
     id: {
         type: Sequelize.INTEGER,
+        autoIncrement: true,
         allowNull: false,
-        primaryKey: true,
-        autoIncrement: true
+        primaryKey: true
 
     },
     email: {
@@ -21,16 +21,12 @@ const Users = sequelize.define('users', {
     name: {
         type: Sequelize.DATE,
         allowNull: false
-    },
-    surname: {
-        type: Sequelize.STRING,
-        allowNull: false
-    },
+    }
 
 }, {
     tableName: 'users',
     timestamps: false
-    // options
+        // options
 });
 
 module.exports = Users;
