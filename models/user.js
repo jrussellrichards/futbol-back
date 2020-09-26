@@ -8,7 +8,6 @@ const Users = sequelize.define('users', {
         autoIncrement: true,
         allowNull: false,
         primaryKey: true
-
     },
     email: {
         type: Sequelize.STRING,
@@ -20,6 +19,10 @@ const Users = sequelize.define('users', {
     },
     name: {
         type: Sequelize.DATE,
+        allowNull: false
+    },
+    phone: {
+        type: Sequelize.STRING,
         allowNull: false
     }
 
